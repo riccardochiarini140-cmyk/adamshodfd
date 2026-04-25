@@ -1190,9 +1190,9 @@ window.firebaseReload                = reload;                  // ← NUOVO (pe
 
         <!-- Nota -->
         <p class="verify-note">
+            CHECK YOUR SPAM FOLDER FIRST! 📂<br>
             Click the link in the email to verify your account.<br>
-            After verifying, come back and <strong style="color:rgba(255,255,255,0.5)">log in</strong>.<br>
-            Don't forget to check your spam folder! 📂
+            After verifying, come back and <strong style="color:rgba(255,255,255,0.5)">log in</strong>.
         </p>
 
         <!-- Badge "Email sent!" (appare dopo resend) -->
@@ -2125,7 +2125,7 @@ function showNotVerifiedBanner(email) {
         // Aggiorna testo con l'email specifica (se vogliamo)
         const pEl = banner.querySelector('p');
         if (pEl) {
-            pEl.innerHTML = `⚠️ <strong>Email not verified.</strong><br>Check your inbox for <strong style="color:#fb923c">${escapeHtml(email)}</strong> and click the link before logging in.`;
+            pEl.innerHTML = `⚠️ <strong>Email not verified.</strong><br>Check your SPAM email inbox folder for <strong style="color:#fb923c">${escapeHtml(email)}</strong> and click the link before logging in.`;
         }
     }
 }
