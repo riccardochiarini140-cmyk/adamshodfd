@@ -591,112 +591,128 @@ window.firebaseReload                = reload;                  // ← NUOVO (pe
            poter accedere all'account.
         ============================================================ */
         #verify-modal {
-            position: fixed; inset: 0;
-            background: rgba(0,0,0,0.82);
-            backdrop-filter: blur(10px);
-            z-index: 100000;
-            display: flex; align-items: center; justify-content: center;
-            padding: 16px;
-            opacity: 0; pointer-events: none;
-            transition: opacity 0.35s ease;
-        }
-        #verify-modal.open {
-            opacity: 1; pointer-events: all;
-        }
-        #verify-modal-box {
-            background: #030d06;
-            border: 1px solid rgba(74, 222, 128, 0.35);
-            border-radius: 28px;
-            padding: 36px 30px;
-            width: 100%; max-width: 380px;
-            position: relative;
-            box-shadow: 0 0 60px rgba(74, 222, 128, 0.12), 0 20px 50px rgba(0,0,0,0.8);
-            transform: scale(0.92);
-            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-            text-align: center;
-        }
-        #verify-modal.open #verify-modal-box {
-            transform: scale(1);
-        }
+    position: fixed; inset: 0;
+    background: #000;
+    backdrop-filter: blur(10px);
+    z-index: 100000;
+    display: flex; align-items: center; justify-content: center;
+    padding: 16px;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.35s ease;
+}
 
-        /* Icona envelope animata */
-        .verify-envelope-wrap {
-            width: 80px; height: 80px; border-radius: 50%;
-            background: rgba(74, 222, 128, 0.1);
-            border: 2px solid rgba(74, 222, 128, 0.3);
-            display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 24px;
-            animation: verifyPulse 2.5s ease-in-out infinite;
-        }
-        @keyframes verifyPulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(74,222,128,0.25); }
-            50%       { box-shadow: 0 0 0 14px rgba(74,222,128,0); }
-        }
-        .verify-envelope-wrap i {
-            font-size: 32px;
-            color: #4ade80;
-            filter: drop-shadow(0 0 10px rgba(74,222,128,0.5));
-            animation: envelopeBounce 1.8s ease-in-out infinite;
-        }
-        @keyframes envelopeBounce {
-            0%, 100% { transform: translateY(0px) rotate(-3deg); }
-            50%       { transform: translateY(-5px) rotate(3deg); }
-        }
+#verify-modal.open {
+    opacity: 1; pointer-events: all;
+}
 
-        /* Titolo e testi del modal verifica */
-        .verify-title {
-            font-size: 20px; font-weight: 900; font-style: italic;
-            text-transform: uppercase; letter-spacing: -0.02em;
-            color: white; margin-bottom: 8px;
-        }
-        .verify-accent-bar {
-            height: 3px; width: 32px;
-            background: #4ade80;
-            border-radius: 4px;
-            margin: 0 auto 18px;
-            box-shadow: 0 0 10px rgba(74,222,128,0.5);
-        }
-        .verify-desc {
-            font-size: 13px; color: rgba(255,255,255,0.65);
-            font-weight: 500; line-height: 1.6;
-            margin-bottom: 10px;
-        }
-        .verify-email-chip {
-            display: inline-block;
-            background: rgba(74, 222, 128, 0.1);
-            border: 1px solid rgba(74, 222, 128, 0.25);
-            border-radius: 100px;
-            padding: 6px 18px;
-            font-size: 13px; font-weight: 700;
-            color: #4ade80;
-            margin-bottom: 22px;
-            word-break: break-all;
-        }
-        .verify-note {
-            font-size: 11px; color: rgba(255,255,255,0.35);
-            line-height: 1.5; margin-bottom: 24px;
-        }
+#verify-modal-box {
+    background: #000;
+    border: 1px solid var(--accent); 
+    border-radius: 28px;
+    padding: 36px 30px;
+    width: 100%; 
+    max-width: 380px;
+    position: relative;
+    box-shadow: 0 0 60px rgba(249, 115, 22, 0.15), 0 20px 50px rgba(0,0,0,0.8);
+    transform: scale(0.92);
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    text-align: center;
+}
 
-        /* Pulsante "Resend Email" */
-        .verify-resend-btn {
-            width: 100%; padding: 12px;
-            border-radius: 12px;
-            background: rgba(74, 222, 128, 0.1);
-            border: 1.5px solid rgba(74, 222, 128, 0.35);
-            color: #4ade80; font-weight: 800; font-size: 13px;
-            text-transform: uppercase; letter-spacing: 0.8px;
-            cursor: pointer; transition: all 0.25s ease;
-            display: flex; align-items: center; justify-content: center; gap: 8px;
-            margin-bottom: 10px;
-        }
-        .verify-resend-btn:hover {
-            background: rgba(74, 222, 128, 0.18);
-            border-color: #4ade80;
-            box-shadow: 0 0 20px rgba(74,222,128,0.2);
-        }
-        .verify-resend-btn:disabled {
-            opacity: 0.4; cursor: not-allowed;
-        }
+#verify-modal.open #verify-modal-box {
+    transform: scale(1);
+}
+
+/* Icona envelope animata - AGGIORNATA */
+.verify-envelope-wrap {
+    width: 80px; height: 80px; border-radius: 50%;
+    background: rgba(249, 115, 22, 0.1); /* Sfondo arancione tenue */
+    border: 2px solid rgba(249, 115, 22, 0.3);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 24px;
+    animation: verifyPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes verifyPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.25); }
+    50%       { box-shadow: 0 0 0 14px rgba(249, 115, 22, 0); }
+}
+
+.verify-envelope-wrap i {
+    font-size: 32px;
+    color: var(--accent); /* Colore principale arancione */
+    filter: drop-shadow(0 0 10px rgba(249, 115, 22, 0.5));
+    animation: envelopeBounce 1.8s ease-in-out infinite;
+}
+
+@keyframes envelopeBounce {
+    0%, 100% { transform: translateY(0px) rotate(-3deg); }
+    50%       { transform: translateY(-5px) rotate(3deg); }
+}
+
+/* Titolo e testi del modal verifica */
+.verify-title {
+    font-size: 20px; font-weight: 900; font-style: italic;
+    text-transform: uppercase; letter-spacing: -0.02em;
+    color: white; margin-bottom: 8px;
+}
+
+/* Barretta orizzontale arancione */
+.verify-accent-bar {
+    height: 3px; width: 32px;
+    background: var(--accent);
+    border-radius: 4px;
+    margin: 0 auto 18px;
+    box-shadow: 0 0 10px rgba(249, 115, 22, 0.5);
+}
+
+.verify-desc {
+    font-size: 13px; color: rgba(255,255,255,0.65);
+    font-weight: 500; line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+/* Chip con l'email arancione */
+.verify-email-chip {
+    display: inline-block;
+    background: rgba(249, 115, 22, 0.1);
+    border: 1px solid rgba(249, 115, 22, 0.25);
+    border-radius: 100px;
+    padding: 6px 18px;
+    font-size: 13px; font-weight: 700;
+    color: var(--accent-light); /* Usato accent-light per leggibilità sul nero */
+    margin-bottom: 22px;
+    word-break: break-all;
+}
+
+.verify-note {
+    font-size: 11px; color: rgba(255,255,255,0.35);
+    line-height: 1.5; margin-bottom: 24px;
+}
+
+/* Pulsante "Resend Email" AGGIORNATO */
+.verify-resend-btn {
+    width: 100%; padding: 12px;
+    border-radius: 12px;
+    background: rgba(249, 115, 22, 0.1);
+    border: 1.5px solid rgba(249, 115, 22, 0.35);
+    color: var(--accent);
+    font-weight: 800; font-size: 13px;
+    text-transform: uppercase; letter-spacing: 0.8px;
+    cursor: pointer; transition: all 0.25s ease;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    margin-bottom: 10px;
+}
+
+.verify-resend-btn:hover {
+    background: rgba(249, 115, 22, 0.18);
+    border-color: var(--accent);
+    box-shadow: 0 0 20px rgba(249, 115, 22, 0.2);
+}
+
+.verify-resend-btn:disabled {
+    opacity: 0.4; cursor: not-allowed;
+}
 
         /* Pulsante "Go to Login" */
         .verify-login-btn {
