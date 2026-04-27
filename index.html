@@ -1071,6 +1071,10 @@ window.firebaseReload                 = reload;
 <div id="intro-splash">
     <div class="intro-particles" id="intro-particles"></div>
     <div class="intro-rings" id="intro-rings">
+        <div class="intro-ring" style="width:200px;height:200px;animation-delay:0s;animation-duration:2s;"></div>
+        <div class="intro-ring" style="width:350px;height:350px;animation-delay:0.4s;animation-duration:2.2s;"></div>
+        <div class="intro-ring" style="width:500px;height:500px;animation-delay:0.8s;animation-duration:2.4s;"></div>
+        <div class="intro-ring" style="width:700px;height:700px;animation-delay:1.2s;animation-duration:2.6s;"></div>
     </div>
     <div class="intro-logo-center" id="intro-logo-center">
         <span class="intro-logo-text">
@@ -1453,6 +1457,7 @@ window.firebaseReload                 = reload;
 (function() {
     const splash = document.getElementById('intro-splash');
     const logoEl  = document.getElementById('intro-logo-center');
+    const particles = document.getElementById('intro-particles');
 
     // Create floating particles
     const colors = ['#f97316','#fb923c','#fdba74','#ffffff','#ffd700'];
