@@ -173,25 +173,16 @@ window.firebaseUpdateProfile          = updateProfile;
         /* ======================================================
            INTRO RINGS + PARTICLES
         ====================================================== */
-        .intro-rings { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; }
+        .intro-rings {  }
         .intro-ring {
-            position: absolute;
-            border: 1px solid rgba(249,115,22,0.15);
-            border-radius: 50%;
-            animation: ringPulse 2.5s ease-out infinite;
         }
-        @keyframes ringPulse { 0% { opacity:0.6; transform:scale(0.6); } 100% { opacity:0; transform:scale(1.2); } }
-        .intro-particles { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+        @keyframes ringPulse {}
+        .intro-particles {}
         .intro-particle {
-            position: absolute;
-            border-radius: 50%;
-            animation: particleFloat linear infinite;
+
         }
         @keyframes particleFloat {
-            0%   { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10%  { opacity: 1; }
-            90%  { opacity: 0.5; }
-            100% { transform: translateY(-10vh) rotate(720deg); opacity: 0; }
+}
         }
 
         /* ======================================================
@@ -445,7 +436,7 @@ window.firebaseUpdateProfile          = updateProfile;
            FILTER MODAL
         ====================================================== */
         #custom-filter-modal { position: fixed; inset: 0; z-index: 999999; display: none; align-items: center; justify-content: center; padding: 16px; }
-        
+
         #custom-filter-modal.open { display: flex; }
         #filter-modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0); backdrop-filter: blur(0px); cursor: pointer; transition: background 0.4s ease, backdrop-filter 0.4s ease; }
         #custom-filter-modal.open #filter-modal-overlay { background: rgba(0,0,0,0.75); backdrop-filter: blur(8px); }
@@ -954,12 +945,7 @@ window.firebaseUpdateProfile          = updateProfile;
 <!-- ===================== INTRO SPLASH SCREEN ===================== -->
 <div id="intro-splash">
     <div class="intro-particles" id="intro-particles"></div>
-    <div class="intro-rings" id="intro-rings">
-        <div class="intro-ring" style="width:200px;height:200px;animation-delay:0s;animation-duration:2s;"></div>
-        <div class="intro-ring" style="width:350px;height:350px;animation-delay:0.4s;animation-duration:2.2s;"></div>
-        <div class="intro-ring" style="width:500px;height:500px;animation-delay:0.8s;animation-duration:2.4s;"></div>
-        <div class="intro-ring" style="width:700px;height:700px;animation-delay:1.2s;animation-duration:2.6s;"></div>
-    </div>
+
     <div class="intro-logo-center" id="intro-logo-center">
         <span class="intro-logo-text">
             <span class="intro-logo-adam">ADAM</span><span class="intro-logo-shop">SHOP</span>
@@ -3242,14 +3228,7 @@ document.addEventListener('keydown', function(e) {
     const logoEl    = document.getElementById('intro-logo-center');
     const particles = document.getElementById('intro-particles');
 
-    const colors = ['#f97316','#fb923c','#fdba74','#ffffff','#ffd700'];
-    for (let i = 0; i < 35; i++) {
-        const p = document.createElement('div');
-        p.className = 'intro-particle';
-        const size = Math.random()*6+2;
-        p.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;background:${colors[Math.floor(Math.random()*colors.length)]};opacity:${Math.random()*0.8+0.2};animation-duration:${Math.random()*4+3}s;animation-delay:${Math.random()*2}s;border-radius:${Math.random()>0.5?'50%':'2px'};`;
-        particles.appendChild(p);
-    }
+
 
     setTimeout(() => {
         const headerLogo = document.querySelector('#main-header .logo-wrapper');
