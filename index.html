@@ -799,6 +799,113 @@ window.firebaseUpdateProfile          = updateProfile;
             display: flex; align-items: center; justify-content: center; gap: 8px;
             margin-bottom: 10px;
         }
+        /* --- COMPRESSIONE ULTERIORE TABLET (Sotto 991px) --- */
+/* --- COMPRESSIONE ALTEZZA PER TABLET (Sotto 991px) --- */
+@media (max-width: 991px) {
+    #verify-modal-box {
+        max-width: 420px; /* Più stretto */
+        padding: 20px 25px; /* Meno spazio sopra e sotto */
+        width: 85%;
+    }
+
+    .verify-envelope-wrap {
+        font-size: 35px; /* Icona più piccola */
+        margin-bottom: 5px;
+    }
+
+    .verify-title {
+        font-size: 20px;
+        margin-bottom: 5px;
+    }
+
+    .verify-desc {
+        margin-bottom: 5px;
+    }
+
+    .verify-spam-box {
+        margin-top: 10px;
+        padding: 12px;
+    }
+
+    .verify-spam-list li {
+        margin-bottom: 4px; /* Step quasi attaccati */
+    }
+}
+
+/* --- COMPRESSIONE MASSIMA PER MOBILE (Sotto 480px) --- */
+@media (max-width: 480px) {
+    #verify-modal-box {
+        max-width: 330px; /* Molto compatto lateralmente */
+        padding: 15px 18px; /* Padding minimo */
+    }
+
+    /* Rimpiccioliamo o nascondiamo l'icona per risparmiare 50px di altezza */
+    .verify-envelope-wrap {
+        font-size: 24px; 
+        margin-bottom: 2px;
+    }
+
+    .verify-title {
+        font-size: 18px;
+        margin-top: 5px;
+    }
+
+    .verify-accent-bar {
+        margin: 5px auto; /* Linea di accento più sottile */
+    }
+
+    .verify-desc {
+        font-size: 13px;
+        margin-bottom: 5px;
+    }
+
+    .verify-email-chip {
+        font-size: 12px;
+        padding: 4px 10px;
+        margin-bottom: 10px;
+    }
+
+    /* Compressione Box Spam */
+    .verify-spam-box {
+        margin-top: 5px;
+        padding: 8px 10px;
+    }
+
+    .verify-spam-title-row {
+        font-size: 12px;
+        margin-bottom: 5px;
+    }
+
+    .verify-spam-list li {
+        font-size: 11px; /* Testo piccolo per stare su una riga sola quando possibile */
+        line-height: 1.2;
+        margin-bottom: 3px;
+    }
+
+    .step-num {
+        width: 15px;
+        height: 15px;
+        font-size: 9px;
+    }
+
+    .spam-folder-tip {
+        margin-top: 5px;
+        padding: 5px;
+        font-size: 10px;
+    }
+
+    /* Bottoni uniti per risparmiare spazio verticale */
+    .verify-resend-btn, .verify-login-btn {
+        padding: 8px 10px;
+        font-size: 12px;
+        margin-top: 8px;
+    }
+
+    #resend-countdown {
+        font-size: 11px;
+        margin-top: 4px;
+    }
+}
         .verify-resend-btn:hover { background: rgba(34,197,94,0.2); border-color: #22c55e; box-shadow: 0 0 20px rgba(34,197,94,0.25); }
         .verify-resend-btn:disabled { opacity: 0.4; cursor: not-allowed; }
         .verify-login-btn {
@@ -1077,25 +1184,13 @@ window.firebaseUpdateProfile          = updateProfile;
         <div id="login-error" class="auth-error">Invalid email or password.</div>
         <!-- NOT VERIFIED BANNER -->
         <div id="login-not-verified-banner">
-            <p id="login-not-verified-text">⚠️ <strong>Email not verified.</strong><br>Check your SPAM / JUNK folder and click the verification link.</p>
+            <p id="login-not-verified-text">⚠️ <strong>Email not verified.</strong><br>Open Spam folder → find CocoFinds email → click "Not Spam" → then click the link inside</p>
+
+            <!-- SPAM DETAILS inside login banner -->
             <button id="login-resend-from-login-btn" onclick="resendVerificationFromLogin()">
-                <i class="fa-solid fa-paper-plane" style="font-size:10px"></i>
+                <i class="fa-solid fa-paper-plane" style="font-size:11px"></i>
                 <span id="login-resend-label">Resend Email</span>
             </button>
-            <!-- SPAM DETAILS inside login banner -->
-            <div id="login-spam-box">
-                <div class="spam-login-title">
-                    <i class="fa-solid fa-folder-open"></i>
-                    <span id="login-spam-title-text">📂 Check SPAM / JUNK folder!</span>
-                </div>
-                <ul id="login-spam-list">
-                    <li><i class="fa-solid fa-chevron-right"></i><span id="login-spam-s1">Open Gmail / Outlook / your mail app</span></li>
-                    <li><i class="fa-solid fa-chevron-right"></i><span id="login-spam-s2"><strong style="color:#4ade80;">Go to SPAM or JUNK</strong> — the email always lands there</span></li>
-                    <li><i class="fa-solid fa-chevron-right"></i><span id="login-spam-s3">Open the CocoFinds email → <strong style="color:#4ade80;">copy the link</strong></span></li>
-                    <li><i class="fa-solid fa-chevron-right"></i><span id="login-spam-s4">Paste it into your browser address bar and press Enter</span></li>
-                    <li><i class="fa-solid fa-chevron-right"></i><span id="login-spam-s5">Then come back here and log in</span></li>
-                </ul>
-            </div>
         </div>
         <input type="email"    id="login-email"    class="auth-input" placeholder="Email address" autocomplete="email">
         <input type="password" id="login-password" class="auth-input" placeholder="Password"      autocomplete="current-password">
@@ -1170,31 +1265,16 @@ window.firebaseUpdateProfile          = updateProfile;
                 <li>
                     <span class="step-num">4</span>
                     <span id="verify-step4">
-                        Click the verification link — or <span class="step-highlight">copy it</span> and paste it directly into your browser's address bar
+                        Click "Not Spam" → then click the link inside
                     </span>
                 </li>
                 <li>
                     <span class="step-num">5</span>
-                    <span id="verify-step5">Come back here and <span class="step-highlight">Sign In</span></span>
+                    <span id="verify-step5">Come back here and <span class="step-highlight">Log In</span></span>
                 </li>
             </ul>
-
-            <!-- extra dashed tip -->
-            <div class="spam-folder-tip">
-                <i class="fa-solid fa-circle-info"></i>
-                <span id="verify-spam-tip">
-                    <strong style="color:#4ade80;">Gmail tip:</strong> open Spam folder → find CocoFinds email → click "Not Spam" → then click the link inside.
-                </span>
-            </div>
+        
         </div>
-        <!-- success badge -->
-        <div class="verify-sent-badge" id="verify-sent-badge">
-            <i class="fa-solid fa-circle-check"></i>
-            <span id="verify-sent-text">New email sent!</span>
-        </div>
-
-        <!-- countdown -->
-        <div id="resend-countdown"></div>
 
         <!-- resend button -->
         <button class="verify-resend-btn" id="verify-resend-btn" onclick="handleResendVerification()">
@@ -1433,7 +1513,7 @@ window.firebaseUpdateProfile          = updateProfile;
     <a href="https://t.me/Hoobuy_Adam" target="_blank" class="mobile-toolbar-btn" style="text-decoration:none;color:rgba(255,255,255,0.6);display:flex;align-items:center;justify-content:center;">
         <i class="fa-solid fa-headset" style="font-size:11px;"></i>
     </a>
-    <a href="https://t.me/BestChinaFactory" target="_blank" class="mobile-toolbar-btn telegram-btn" style="text-decoration:none;display:flex;align-items:center;justify-content:center;">
+    <a href="https://t.me/cocofindsoffcial" target="_blank" class="mobile-toolbar-btn telegram-btn" style="text-decoration:none;display:flex;align-items:center;justify-content:center;">
         <i class="fa-brands fa-telegram" style="font-size:13px;"></i>
     </a>
 </div>
@@ -1530,7 +1610,7 @@ const TRANSLATIONS = {
         emptyWishlistSub:    'Click the heart icon on any product to save it here',
         links:               'LINKS',
         emailNotVerified:    'Email not verified.',
-        checkSpamFirst:      'Check your SPAM / JUNK folder for {email} and click the verification link.',
+        checkSpamFirst:      'Open Spam folder for {email}→ find CocoFinds email → click "Not Spam" → then click the link inside .',
         resendEmail:         'Resend Email',
         chooseAgent:         'CHOOSE THE AGENT:',
         mulebuyLabel:        'MULEBUY',
@@ -1562,7 +1642,7 @@ const TRANSLATIONS = {
         verifyStep1:         'Open your email app (Gmail, Outlook, Yahoo…)',
         verifyStep2:         'Look in the SPAM Folder — the email always gets filtered there automatically',
         verifyStep3:         'Open the email from CocoFinds',
-        verifyStep4:         'Click the link — or copy it and paste it into your browser address bar',
+        verifyStep4:         'Click "Not Spam" → then click the link inside',
         verifyStep5:         'Come back here and Sign In',
         verifySpamTip:       'Gmail tip: open Spam folder → find CocoFinds email → click "Not Spam" → then click the link inside.',
         verifyPollText:      'Waiting for you to verify…',
