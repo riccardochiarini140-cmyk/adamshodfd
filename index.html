@@ -1309,10 +1309,12 @@ window.firebaseUpdateProfile          = updateProfile;
 <div id="currency-dropdown" class="dropdown-menu" style="min-width:160px"></div>
 
 <!-- ===================== STICKY HEADER ===================== -->
-<header id="main-header">
+<header id="main-header" style="position: sticky; top: 0; z-index: 1000; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
     <div style="max-width:1400px;margin:0 auto;">
         <div style="padding:10px 10px 10px 12px;display:flex;align-items:center;justify-content:space-between;gap:10px;" class="header-inner-pad">
-            <div class="logo-wrapper" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="flex-shrink:0">
+            
+            <!-- Logo Section -->
+            <div class="logo-wrapper" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="flex-shrink:0; cursor: pointer;">
                 <div class="logo-orbit-wrap" aria-hidden="true">
                     <span class="lso-dot lso-d1"></span>
                     <span class="lso-dot lso-d2"></span>
@@ -1323,8 +1325,11 @@ window.firebaseUpdateProfile          = updateProfile;
                     <span class="logo-coco">COCO</span><span class="logo-finds">FINDS</span>
                 </span>
             </div>
-            <div id="header-controls">
-                <div class="desktop-lang-curr">
+
+            <!-- Controls Section -->
+            <div id="header-controls" style="display: flex; align-items: center; gap: 12px;">
+                <div class="desktop-lang-curr" style="display: flex; gap: 8px;">
+                    <!-- Language Dropdown -->
                     <div class="dropdown-wrapper">
                         <button id="lang-trigger" class="hbtn hbtn-subtle" onclick="toggleDropdown('lang')">
                             <span id="lang-flag">🇺🇸</span>
@@ -1332,6 +1337,7 @@ window.firebaseUpdateProfile          = updateProfile;
                             <i class="fa-solid fa-chevron-down" style="font-size:7px;opacity:0.6"></i>
                         </button>
                     </div>
+                    <!-- Currency Dropdown -->
                     <div class="dropdown-wrapper">
                         <button id="currency-trigger" class="hbtn hbtn-subtle" onclick="toggleDropdown('currency')">
                             <i class="fa-solid fa-dollar-sign" style="font-size:9px"></i>
@@ -1340,11 +1346,15 @@ window.firebaseUpdateProfile          = updateProfile;
                         </button>
                     </div>
                 </div>
-                <button onclick="openWishlistModal()" class="hbtn hbtn-wishlist" style="position:relative;">
+
+                <!-- Wishlist Button -->
+                <button onclick="openWishlistModal()" class="hbtn hbtn-wishlist" style="position:relative; display: flex; align-items: center; gap: 6px;">
                     <i class="fa-solid fa-heart"></i>
                     <span class="label-text" id="wishlist-btn-label">Wishlist</span>
-                    <span id="wishlist-count-badge" class="wishlist-count-badge" style="display:none">0</span>
+                    <span id="wishlist-count-badge" class="wishlist-count-badge" style="display:none; position: absolute; top: -5px; right: -5px; background: #22c55e; color: white; font-size: 10px; padding: 2px 5px; border-radius: 10px;">0</span>
                 </button>
+
+                <!-- Auth Area -->
                 <div id="auth-area" style="display:flex;align-items:center;gap:6px;"></div>
             </div>
         </div>
