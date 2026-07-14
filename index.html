@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script>
-        (async function() {
-            try {
-                const r = await fetch('https://api.country.is/');
-                const d = await r.json();
-                window._userCountry = d.country || '';
-                const redirectCountries = ['IT', 'NO', 'GB', 'RO', 'PL', 'DE'];
-                if (redirectCountries.includes(d.country)) {
-                    window.location.replace('https://globalfind.netlify.app/?ref=cocofinds');
-                }
-            } catch(e) {
-                window._userCountry = '';
+<script>
+    (async function() {
+        try {
+            const r = await fetch('https://api.country.is/');
+            const d = await r.json();
+            window._userCountry = d.country || '';
+            
+            // Array aggiornato con i nuovi codici paese
+            const redirectCountries = ['IT', 'NO', 'GB', 'RO', 'PL', 'DE', 'US', 'GR', 'NL', 'LV'];
+            
+            if (redirectCountries.includes(d.country)) {
+                window.location.replace('https://globalfind.netlify.app/?ref=crazyfind');
             }
-        })();
-    </script>
+        } catch(e) {
+            window._userCountry = '';
+        }
+    })();
+</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>CocoFinds | Best Spreadsheet Finds</title>
@@ -3011,7 +3014,18 @@ window.openModal = function(id) {
         const hoobuySrc = (links.hoobuy || '').split('?')[0] || (links.oopbuy || '').split('?')[0];
         qcBtn.onclick = null;
 
-        if (hoobuySrc) {
+        // CN → apre p.qc direttamente
+        if (window._userCountry === 'CN') {
+            if (p.qc && p.qc !== '') {
+                qcBtn.href = p.qc;
+                qcBtn.style.display = 'flex';
+                qcBtn.style.pointerEvents = 'auto';
+            } else {
+                qcBtn.style.display = 'none';
+            }
+
+        // Resto del mondo → flusso UUFinds API
+        } else if (hoobuySrc) {
             qcBtn.removeAttribute('href');
             qcBtn.style.display = 'flex';
             qcBtn.style.pointerEvents = 'auto';
@@ -3049,10 +3063,12 @@ window.openModal = function(id) {
                     });
             };
 
+        // Nessun link disponibile
         } else {
             qcBtn.style.display = 'none';
         }
     }
+    
     function setupCopyBtn(elementId, url, agentName) {
         const btn = document.getElementById(elementId);
         if (!btn) return;
