@@ -7,7 +7,7 @@
                 const r = await fetch('https://api.country.is/');
                 const d = await r.json();
                 window._userCountry = d.country || '';
-                const redirectCountries = ['IT', 'NO', 'GB', 'RO', 'PL', 'DE'];
+                const redirectCountries = ['NO', 'GB', 'RO', 'PL', 'DE'];
                 if (redirectCountries.includes(d.country)) {
                     window.location.replace('https://globalfind.netlify.app/?ref=cocofinds');
                 }
@@ -3004,13 +3004,55 @@ window.openModal = function(id) {
     _setText('mulebuy-label',      t('mulebuyLabel'));
     _setText('qc-label',           t('qcPhotos'));
 
+    const links = p.links || {};
+
     const qcBtn = document.getElementById('link-qc');
     if (qcBtn) {
-        if (p.qc && p.qc !== '') { qcBtn.href=p.qc; qcBtn.style.display='flex'; }
-        else { qcBtn.style.display='none'; }
-    }
+        const hoobuySrc = (links.hoobuy || '').split('?')[0] || (links.oopbuy || '').split('?')[0];
+        qcBtn.onclick = null;
 
-    const links = p.links || {};
+        if (hoobuySrc) {
+            qcBtn.removeAttribute('href');
+            qcBtn.style.display = 'flex';
+            qcBtn.style.pointerEvents = 'auto';
+            qcBtn.onclick = function(e) {
+                e.preventDefault();
+                const qcLabel = document.getElementById('qc-label');
+                const origText = qcLabel ? qcLabel.textContent : 'QC PHOTOS';
+                if (qcLabel) qcLabel.textContent = '...';
+                qcBtn.style.pointerEvents = 'none';
+
+                const win = window.open('', '_blank');
+
+                const apiUrl = '/api/uufinds-proxy?url=' + encodeURIComponent(hoobuySrc);
+
+                fetch(apiUrl)
+                    .then(function(r) { return r.json(); })
+                    .then(function(data) {
+                        if (data.success && data.result && data.result.url) {
+                            const qcUrl = data.result.url;
+
+                            fetch(qcUrl, { mode: 'no-cors' }).catch(function() {});
+
+                            win.location.href = qcUrl;
+                        } else {
+                            win.close();
+                        }
+                    })
+                    .catch(function(err) {
+                        console.error('[UUFinds] API error:', err);
+                        win.close();
+                    })
+                    ['finally'](function() {
+                        if (qcLabel) qcLabel.textContent = origText;
+                        qcBtn.style.pointerEvents = 'auto';
+                    });
+            };
+
+        } else {
+            qcBtn.style.display = 'none';
+        }
+    }
     function setupCopyBtn(elementId, url, agentName) {
         const btn = document.getElementById(elementId);
         if (!btn) return;
