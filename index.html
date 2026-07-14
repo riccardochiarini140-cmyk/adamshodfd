@@ -7,7 +7,7 @@
                 const r = await fetch('https://api.country.is/');
                 const d = await r.json();
                 window._userCountry = d.country || '';
-                const redirectCountries = ['NO', 'GB', 'RO', 'PL', 'DE'];
+                const redirectCountries = ['IT', 'NO', 'GB', 'RO', 'PL', 'DE'];
                 if (redirectCountries.includes(d.country)) {
                     window.location.replace('https://globalfind.netlify.app/?ref=cocofinds');
                 }
